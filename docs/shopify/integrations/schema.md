@@ -49,7 +49,9 @@ an `AggregateRating` where the item that is being reviewed is the `Organization`
 ### Editing pieces
 
 Existing pieces on the schema graph can also be edited. This can only be done by adding additional data to the pieces.
-For example, the current `WebPage` can be enhanced with the `FAQPage` type and have `Question` pieces added.
+For example, the current `WebPage` can be enhanced with the `FAQPage` type and have `Question` pieces added. This example
+relies on the `@id` property of the existing `WebPage`, which will result in merging the data into one big `WebPage / 
+FAQPage` piece.
 
 <YoastSchemaExample>
 {`{
@@ -75,7 +77,7 @@ graph, the same logic should be taken into account.
 
 #### Check the pieces are enabled
 
-Through the Yoast SEO for Shopify app, several pieces can be disabled. In these cases, the pieces won't ever be output.
+Through the Yoast SEO for Shopify app, several pieces can be disabled. In these cases, the pieces will never be output.
 We store this data in the metafield `yoast_seo.settings` on the `shop` object.  It's a JSON-type metafield, where the
 boolean enabled status of these pieces is stored in `schema.outputControls`.
 
@@ -120,12 +122,15 @@ setting which is stored in `article.metafields.yoast_seo.indexable.value.open_gr
 
 ## Constructing ID parameters
 
+All pieces in our schema output can referenced via an `@id` attribute. To replicate the `@id` value, this is the logic we apply.
 
-* `Organization`: `shop.url | append: '/#/schema/organization/1'`
-* `WebSite`: `shop.url | append: '/#/schema/website/1'`
-* `WebPage`: `canonical_url`
-* `Article`: `canonical_url | append: '#/schema/article/' | append: article.id`
-* `Product`: `canonical_url | append: "/#/schema/Product"`
-* `Offer`: `shop.url | append: '/#/schema/Offer/' | append: variant.id`
-* `BreadcrumbList`: `canonical_url | append: '/#/schema/breadcrumb'`
-* `ImageObject`: `shop.url | append: '/#/schema/ImageObject/' | append: image.id`
+| Schema piece     | `@id` value generation                                             |
+|------------------|--------------------------------------------------------------------|
+| `Organization`   | `shop.url | append: '/#/schema/organization/1'`                    |
+| `WebSite`        | `shop.url | append: '/#/schema/website/1'`                         |
+| `WebPage`        | `canonical_url`                                                    |
+| `Article`        | `canonical_url | append: '#/schema/article/' | append: article.id` |
+| `Product`        | `canonical_url | append: "/#/schema/Product"`                      |
+| `Offer`          | `shop.url | append: '/#/schema/Offer/' | append: variant.id`       |
+| `BreadcrumbList` | `canonical_url | append: '/#/schema/breadcrumb'`                   |
+| `ImageObject`    | `shop.url | append: '/#/schema/ImageObject/' | append: image.id`   |
