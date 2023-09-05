@@ -26,7 +26,7 @@ More about the specific `@id` values and how we create them can be found [here](
 Generally, our graph will contain an `Organization`, and references that `Organization` as the publisher of a `WebSite`.
 We'll also add that the current `WebPage` is a part of the `WebSite`. If you want to add additional data to this graph
 that references a specific piece, this can be done by referencing the `@id` property. For example, you could add 
-an `AggregateRating` where the item under review is the `Organization`:
+an `AggregateRating` where the item that is being reviewed is the `Organization`:
 
 <YoastSchemaExample>
 {`{
