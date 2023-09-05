@@ -19,7 +19,7 @@ or to _extend_ an existing piece with additional data. Multiple `<script>` tags 
 combination of all pieces from all `<script>` tags should result in one connected graph of schema data. Validate all
 changes with our [preferred validation tools](/features/schema/functional-specification#5-validation-tools).
 
-More about the specific `@id` attributes and how we create them can be found [here](#constructing-id-parameters).
+More about the specific `@id` values and how we create them can be found [here](#constructing-id-parameters).
 
 ### Adding pieces
 
