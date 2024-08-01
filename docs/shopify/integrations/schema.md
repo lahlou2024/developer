@@ -91,31 +91,22 @@ boolean enabled status of these pieces is stored in `schema.outputControls`.
 | `Product`        | `shop.metafields.yoast_seo.value.schema.outputControls.product`      |
 | `BreadcrumbList` | `shop.metafields.yoast_seo.value.schema.outputControls.breadcrumb`   |
 
-#### Check the Organization's name and logo being defined
+#### Check the Organization's name being defined
 
+The `Organization` piece will only be added when the name is defined in the settings of the Yoast SEO for Shopify app.
 In the same `yoast_seo.settings` metafield on the `shop` object, the data for the representation of the organization
 also exists. The organization name should not be empty. That name is stored in
 `shop.metafields.yoast_seo.value.schema.siteRepresentation.organizationName`.
 
-**TODO**. Figure this out: The logo data is only conditionally outputting the `logo` property of the `Organization`. Is this correct??
-
-Besides the organization name, we also require an organization logo. The url of the logo is stored in
-`shop.metafields.yoast_seo.value.schema.siteRepresentation.organizationLogo.url`. Through the app, the image is stored
-within Shopify. We extract the filename from the url, and retrieve the logo data from the global Liquid variable
-`images`. Only if the logo exists as an image in this global variable, **_we output the `logo` property / we output the 
-Organization piece_.**
-
 #### Checking for a valid Article
 
 While a `WebPage` might always be put on the page, the `Article` relies on the `Organization` and thus it also relies on
-the organization name (**_and logo???_**) to be defined. 
+the organization name to be defined. 
 
-An `Article` also requires data for the `description` page. We re-use the meta description for this by default. Without
+An `Article` also requires data for the `description` property. We re-use the meta description for this by default. Without
 a meta description, the article will not be output.
 
-**TODO**. Figure this out: The article is only conditionally being output when the `image` property can be set. Is this correct??
-
-The third requirement for an `Article` is to have an image to show. This image can be the `page_image`, a defined site
+The third requirement for an `Article` is to have an image to show. This image can be the `page_image` or a defined site
 image which is stored in `shop.metafields.yoast_seo.value.siteSettings.siteDefaults.siteImage.url` and exists in the 
 global Liquid variable `images`. The image can also be taken from the `article.image` object, or used from our OpenGraph
 setting which is stored in `article.metafields.yoast_seo.indexable.value.open_graph_image_url`.
