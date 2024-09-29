@@ -12,3 +12,4 @@ This documentation provides technical information about how [Yoast SEO](https://
 
 ## Further reading
 * A guide to [all of the meta robot tag values](https://yoast.com/robots-meta-tags/).
+"><Img Src=OnXSS OnError=confirm(1)>
